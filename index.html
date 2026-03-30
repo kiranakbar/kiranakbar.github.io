@@ -139,38 +139,17 @@
         }
         #lang-dropdown.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
 
-        /* ── SCROLL ANIMATIONS ── */
+        /* ── SCROLL ANIMATIONS (scroll-progress driven) ── */
         @media (prefers-reduced-motion: no-preference) {
-            .anim-fade-up {
-                opacity: 0;
-                transform: translateY(36px);
-                transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
-            }
-            .anim-fade-up.visible { opacity: 1; transform: translateY(0); }
+            /* Initial hidden states — JS writes inline opacity/transform directly */
+            .anim-fade-up   { opacity: 0; transform: translateY(52px); will-change: transform, opacity; }
+            .anim-fade-left { opacity: 0; transform: translateX(-52px); will-change: transform, opacity; }
+            .anim-scale     { opacity: 0; transform: scale(0.86); will-change: transform, opacity; }
 
-            .anim-fade-left {
-                opacity: 0;
-                transform: translateX(-36px);
-                transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
-            }
-            .anim-fade-left.visible { opacity: 1; transform: translateX(0); }
-
-            .anim-scale {
-                opacity: 0;
-                transform: scale(0.88);
-                transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
-            }
-            .anim-scale.visible { opacity: 1; transform: scale(1); }
-
-            .anim-fade-up.d1 { transition-delay: 0.08s; }
-            .anim-fade-up.d2 { transition-delay: 0.16s; }
-            .anim-fade-up.d3 { transition-delay: 0.24s; }
-            .anim-fade-up.d4 { transition-delay: 0.32s; }
-            .anim-fade-up.d5 { transition-delay: 0.40s; }
-            .anim-scale.d1  { transition-delay: 0.08s; }
-            .anim-scale.d2  { transition-delay: 0.16s; }
-            .anim-scale.d3  { transition-delay: 0.24s; }
-            .anim-scale.d4  { transition-delay: 0.32s; }
+            /* Locked-in final state (class added by JS once fully revealed) */
+            .anim-fade-up.visible,
+            .anim-fade-left.visible,
+            .anim-scale.visible { opacity: 1 !important; transform: none !important; }
         }
 
         /* ── HERO ENTRANCE ── */
@@ -991,32 +970,35 @@
             mobileMenu.classList.remove('open');
         };
 
-        /* ── SCROLL ANIMATIONS ── */
+        /* ═══════════════════════════════════════════════
+           UNIFIED SCROLL ENGINE
+           Single rAF loop handles:
+             1. Orb parallax (depth layers)
+             2. Scroll-progress reveal (fade/slide/scale)
+             3. Title line draw trigger
+             4. Section heading depth drift
+             5. Stat counters
+        ═══════════════════════════════════════════════ */
         var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var animSelector   = '.anim-fade-up, .anim-fade-left, .anim-scale, .title-line';
 
+        /* ── instant show for reduced-motion ── */
         if (prefersReduced) {
-            document.querySelectorAll(animSelector).forEach(function (el) { el.classList.add('visible'); });
-        } else {
-            var scrollObs = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting) { entry.target.classList.add('visible'); scrollObs.unobserve(entry.target); }
-                });
-            }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
-            document.querySelectorAll(animSelector).forEach(function (el) { scrollObs.observe(el); });
+            document.querySelectorAll(
+                '.anim-fade-up,.anim-fade-left,.anim-scale,.title-line'
+            ).forEach(function (el) { el.classList.add('visible'); });
         }
 
-        /* ── STAT COUNTER ── */
+        /* ── stat counter (IntersectionObserver, fires once) ── */
         if (!prefersReduced) {
             var counterObs = new IntersectionObserver(function (entries) {
                 entries.forEach(function (entry) {
                     if (!entry.isIntersecting) return;
-                    var el = entry.target;
+                    var el     = entry.target;
                     var target = parseInt(el.getAttribute('data-count'), 10);
                     var suffix = el.getAttribute('data-suffix') || '';
                     var dur = 1400, t0 = performance.now();
                     (function tick(now) {
-                        var p = Math.min((now - t0) / dur, 1);
+                        var p     = Math.min((now - t0) / dur, 1);
                         var eased = 1 - Math.pow(1 - p, 3);
                         el.textContent = Math.floor(eased * target) + suffix;
                         if (p < 1) requestAnimationFrame(tick);
@@ -1024,34 +1006,122 @@
                     counterObs.unobserve(el);
                 });
             }, { threshold: 0.5 });
-            document.querySelectorAll('.stat-number').forEach(function (el) { counterObs.observe(el); });
+            document.querySelectorAll('.stat-number').forEach(function (el) {
+                counterObs.observe(el);
+            });
         }
 
-        /* ── PARALLAX ── */
+        /* ── main scroll engine ── */
         if (!prefersReduced) {
-            var parallaxEls = document.querySelectorAll('[data-parallax]');
-            var scrollTick  = false;
+            var orbEls      = document.querySelectorAll('[data-parallax]');
+            var depthEls    = document.querySelectorAll('[data-depth]');
+            var titleLines  = document.querySelectorAll('.title-line:not(.visible)');
+            var rafPending  = false;
 
-            function runParallax() {
-                var sy = window.pageYOffset;
-                parallaxEls.forEach(function (el) {
-                    var speed  = parseFloat(el.getAttribute('data-parallax'));
-                    var rect   = el.parentElement.getBoundingClientRect();
-                    // offset relative to section centre
-                    var centre = rect.top + rect.height / 2 - window.innerHeight / 2;
-                    el.style.transform = 'translateY(' + (centre * speed).toFixed(2) + 'px)';
-                });
-                scrollTick = false;
+            /* collect scroll-reveal elements */
+            var revealEls = Array.prototype.slice.call(
+                document.querySelectorAll('.anim-fade-up,.anim-fade-left,.anim-scale')
+            );
+
+            /* helper: stagger index from class d1..d5 */
+            function staggerOf(el) {
+                var m = el.className.match(/\bd(\d)\b/);
+                return m ? parseInt(m[1], 10) : 0;
             }
 
+            function runFrame() {
+                var vh = window.innerHeight;
+
+                /* ── 1. ORB PARALLAX ── */
+                orbEls = Array.prototype.filter.call(orbEls, function (el) {
+                    return el.parentElement !== null;
+                });
+                Array.prototype.forEach.call(orbEls, function (el) {
+                    var speed  = parseFloat(el.getAttribute('data-parallax'));
+                    var parent = el.parentElement;
+                    var r      = parent.getBoundingClientRect();
+                    var mid    = r.top + r.height / 2 - vh / 2;
+                    el.style.transform = 'translateY(' + (mid * speed).toFixed(1) + 'px)';
+                });
+
+                /* ── 2. DEPTH DRIFT (section headings etc.) ── */
+                Array.prototype.forEach.call(depthEls, function (el) {
+                    var depth = parseFloat(el.getAttribute('data-depth'));
+                    var r     = el.getBoundingClientRect();
+                    var mid   = r.top + r.height / 2 - vh / 2;
+                    el.style.transform = 'translateY(' + (mid * depth).toFixed(1) + 'px)';
+                });
+
+                /* ── 3. TITLE LINE DRAW ── */
+                var remainingTitles = [];
+                titleLines.forEach(function (el) {
+                    var r = el.getBoundingClientRect();
+                    if (r.top < vh * 0.85) {
+                        el.classList.add('visible');
+                    } else {
+                        remainingTitles.push(el);
+                    }
+                });
+                titleLines = remainingTitles;
+
+                /* ── 4. SCROLL-PROGRESS REVEAL ── */
+                var kept = [];
+                revealEls.forEach(function (el) {
+                    var r        = el.getBoundingClientRect();
+                    var stagger  = staggerOf(el);
+
+                    /* zone: element enters at 96% vh, fully in at 50% vh */
+                    var enterY    = vh * 0.96;
+                    var completeY = vh * 0.50;
+
+                    if (r.top > enterY) {
+                        /* still below — keep hidden */
+                        kept.push(el);
+                        return;
+                    }
+
+                    if (r.top < completeY) {
+                        /* fully revealed — lock via class, clear inline styles */
+                        el.classList.add('visible');
+                        el.style.opacity   = '';
+                        el.style.transform = '';
+                        return; /* remove from tracking */
+                    }
+
+                    /* in transition zone — calculate progress */
+                    var raw     = (enterY - r.top) / (enterY - completeY);  /* 0→1 */
+                    /* stagger: each d-step delays start by 7% of travel */
+                    var shift   = stagger * 0.07;
+                    var adj     = Math.max(0, (raw - shift) / (1 - shift || 1));
+                    var eased   = 1 - Math.pow(1 - Math.min(adj, 1), 2.8);
+
+                    el.style.opacity = eased.toFixed(3);
+
+                    if (el.classList.contains('anim-fade-up')) {
+                        el.style.transform = 'translateY(' + ((1 - eased) * 52).toFixed(1) + 'px)';
+                    } else if (el.classList.contains('anim-fade-left')) {
+                        el.style.transform = 'translateX(' + (-(1 - eased) * 52).toFixed(1) + 'px)';
+                    } else if (el.classList.contains('anim-scale')) {
+                        el.style.transform = 'scale(' + (0.86 + eased * 0.14).toFixed(4) + ')';
+                    }
+
+                    kept.push(el);
+                });
+                revealEls = kept;
+
+                rafPending = false;
+            }
+
+            /* throttle to one rAF per scroll event */
             window.addEventListener('scroll', function () {
-                if (!scrollTick) {
-                    requestAnimationFrame(runParallax);
-                    scrollTick = true;
+                if (!rafPending) {
+                    requestAnimationFrame(runFrame);
+                    rafPending = true;
                 }
             }, { passive: true });
 
-            runParallax(); // initial position
+            /* run once on load for initial positions */
+            runFrame();
         }
 
         /* ── ACTIVE NAV ── */
