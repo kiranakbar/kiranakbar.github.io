@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Muhammad Mohsin | Software Engineer</title>
+    <title>Kiran Akbar | Business Relationship Officer</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
@@ -117,7 +117,7 @@
             overflow: hidden;
             transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1);
         }
-        #mobile-menu.open { max-height: 440px; }
+        #mobile-menu.open { max-height: 480px; }
 
         #hamburger-line-1,
         #hamburger-line-2,
@@ -178,16 +178,11 @@
             to   { opacity: 1; transform: translateY(0); }
         }
         @keyframes heroFadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50%       { transform: translateY(-10px); }
-        }
+
         .hero-badge    { animation: heroUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.15s both; }
         .hero-title    { animation: heroUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.30s both; }
         .hero-subtitle { animation: heroUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.45s both; }
         .hero-buttons  { animation: heroUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.60s both; }
-        .hero-image    { animation: heroFadeIn 1s ease 0.35s both; }
-        .hero-float    { animation: float 7s ease-in-out infinite; }
 
         /* ── MICRO: RIPPLE BUTTONS ── */
         .btn-ripple { position: relative; overflow: hidden; }
@@ -266,7 +261,7 @@
         .footer-link { transition: color 0.2s ease, transform 0.22s cubic-bezier(0.34,1.56,0.64,1); display: inline-block; }
         .footer-link:hover { transform: translateY(-3px); }
 
-        /* ── MICRO: ICON BUTTONS (THEME / LANG) ── */
+        /* ── MICRO: ICON BUTTONS ── */
         .icon-btn { transition: color 0.2s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1), background-color 0.2s ease; border-radius: 50%; }
         .icon-btn:hover { transform: rotate(12deg) scale(1.18); background-color: rgba(137,206,255,0.1); color: #89ceff; }
         html:not(.dark) .icon-btn:hover { background-color: rgba(0,101,145,0.08); color: #006591; }
@@ -276,9 +271,16 @@
         .download-btn:hover { transform: scale(1.05) translateY(-1px); box-shadow: 0 8px 20px rgba(137,206,255,0.28); }
         html:not(.dark) .download-btn:hover { box-shadow: 0 8px 20px rgba(0,101,145,0.22); }
 
-        /* ── MICRO: PROJECT TAG ── */
-        .proj-tag { transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1); }
-        .proj-tag:hover { transform: scale(1.1); }
+        /* ── EDUCATION CARD ── */
+        .edu-card { transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease, border-color 0.3s ease; }
+        .edu-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); border-color: rgba(137,206,255,0.3) !important; }
+        html:not(.dark) .edu-card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.09); border-color: rgba(0,101,145,0.25) !important; }
+
+        /* ── ACHIEVEMENT ITEM ── */
+        .achieve-item {
+            transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), background-color 0.2s ease;
+        }
+        .achieve-item:hover { transform: translateX(6px); }
     </style>
 </head>
 
@@ -288,26 +290,21 @@
     <nav id="main-nav" class="fixed top-0 w-full z-50 bg-[#131313]/70 backdrop-blur-xl">
         <div class="flex justify-between items-center max-w-7xl mx-auto px-6 md:px-8 py-5">
 
-            <!-- Logo -->
-            <div class="text-2xl font-black tracking-tighter text-[#89ceff] font-headline">M. MOHSIN</div>
+            <div class="text-2xl font-black tracking-tighter text-[#89ceff] font-headline">K. AKBAR</div>
 
-            <!-- Desktop nav links -->
             <div class="hidden md:flex items-center space-x-8 font-headline font-bold tracking-tight">
-                <a class="nav-link text-[#89ceff] pb-1"                   href="#home"       data-i18n="nav.home">Home</a>
-                <a class="nav-link text-gray-400 hover:text-white"         href="#about"      data-i18n="nav.about">About</a>
-                <a class="nav-link text-gray-400 hover:text-white"         href="#skills"     data-i18n="nav.skills">Skills</a>
-                <a class="nav-link text-gray-400 hover:text-white"         href="#experience" data-i18n="nav.experience">Experience</a>
-                <a class="nav-link text-gray-400 hover:text-white"         href="#projects"   data-i18n="nav.projects">Projects</a>
+                <a class="nav-link text-[#89ceff] pb-1"               href="#home"       data-i18n="nav.home">Home</a>
+                <a class="nav-link text-gray-400 hover:text-white"     href="#about"      data-i18n="nav.about">About</a>
+                <a class="nav-link text-gray-400 hover:text-white"     href="#skills"     data-i18n="nav.skills">Skills</a>
+                <a class="nav-link text-gray-400 hover:text-white"     href="#experience" data-i18n="nav.experience">Experience</a>
+                <a class="nav-link text-gray-400 hover:text-white"     href="#education"  data-i18n="nav.education">Education</a>
+                <a class="nav-link text-gray-400 hover:text-white"     href="#achievements" data-i18n="nav.achievements">Achievements</a>
             </div>
 
-            <!-- Controls -->
             <div class="flex items-center space-x-1 md:space-x-2">
-                <!-- Theme toggle -->
                 <button id="theme-toggle" class="icon-btn text-gray-400 p-1.5" aria-label="Toggle theme">
                     <span id="theme-icon" class="material-symbols-outlined">dark_mode</span>
                 </button>
-
-                <!-- Language picker -->
                 <div class="relative">
                     <button id="lang-btn"
                         class="icon-btn text-gray-400 flex items-center gap-1 px-2 py-1.5 rounded-lg text-sm font-bold font-headline"
@@ -323,12 +320,9 @@
                             class="lang-option w-full px-4 py-2.5 text-sm font-bold font-headline text-left hover:bg-primary/10 hover:text-primary transition-colors">SV</button>
                     </div>
                 </div>
-
-                <!-- Download CV (desktop) -->
-                <button class="download-btn btn-ripple hidden lg:block px-5 py-2 bg-primary text-on-primary font-bold rounded-lg text-sm ml-1"
-                    data-i18n="nav.download">Download CV</button>
-
-                <!-- Hamburger (mobile) -->
+                <a href="Kiran_Akbar__.pdf" download="Kiran_Akbar_CV.pdf"
+                    class="download-btn btn-ripple hidden lg:block px-5 py-2 bg-primary text-on-primary font-bold rounded-lg text-sm ml-1"
+                    data-i18n="nav.download">Download CV</a>
                 <button id="hamburger" class="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-[5px]" aria-label="Toggle menu">
                     <span id="hamburger-line-1" class="block w-5 h-0.5 bg-gray-400 rounded"></span>
                     <span id="hamburger-line-2" class="block w-5 h-0.5 bg-gray-400 rounded"></span>
@@ -337,16 +331,17 @@
             </div>
         </div>
 
-        <!-- Mobile dropdown menu -->
         <div id="mobile-menu" class="md:hidden bg-[#131313]/96 backdrop-blur-xl border-t border-outline-variant/10">
             <div class="flex flex-col px-6 py-4 gap-4 font-headline font-bold">
-                <a class="text-[#89ceff] py-1"              href="#home"       data-i18n="nav.home"       onclick="closeMobileMenu()">Home</a>
-                <a class="text-gray-400 hover:text-white py-1" href="#about"      data-i18n="nav.about"       onclick="closeMobileMenu()">About</a>
-                <a class="text-gray-400 hover:text-white py-1" href="#skills"     data-i18n="nav.skills"      onclick="closeMobileMenu()">Skills</a>
-                <a class="text-gray-400 hover:text-white py-1" href="#experience" data-i18n="nav.experience"  onclick="closeMobileMenu()">Experience</a>
-                <a class="text-gray-400 hover:text-white py-1" href="#projects"   data-i18n="nav.projects"    onclick="closeMobileMenu()">Projects</a>
-                <button class="download-btn btn-ripple w-full py-2.5 bg-primary text-on-primary font-bold rounded-lg"
-                    data-i18n="nav.download" onclick="closeMobileMenu()">Download CV</button>
+                <a class="text-[#89ceff] py-1"                 href="#home"         data-i18n="nav.home"         onclick="closeMobileMenu()">Home</a>
+                <a class="text-gray-400 hover:text-white py-1" href="#about"         data-i18n="nav.about"        onclick="closeMobileMenu()">About</a>
+                <a class="text-gray-400 hover:text-white py-1" href="#skills"        data-i18n="nav.skills"       onclick="closeMobileMenu()">Skills</a>
+                <a class="text-gray-400 hover:text-white py-1" href="#experience"    data-i18n="nav.experience"   onclick="closeMobileMenu()">Experience</a>
+                <a class="text-gray-400 hover:text-white py-1" href="#education"     data-i18n="nav.education"    onclick="closeMobileMenu()">Education</a>
+                <a class="text-gray-400 hover:text-white py-1" href="#achievements"  data-i18n="nav.achievements" onclick="closeMobileMenu()">Achievements</a>
+                <a href="Kiran_Akbar__.pdf" download="Kiran_Akbar_CV.pdf"
+                    class="download-btn btn-ripple w-full py-2.5 bg-primary text-on-primary font-bold rounded-lg text-center"
+                    data-i18n="nav.download" onclick="closeMobileMenu()">Download CV</a>
             </div>
         </div>
 
@@ -357,44 +352,37 @@
 
         <!-- ════════════════════ HERO ════════════════════ -->
         <section class="max-w-7xl mx-auto px-6 md:px-8 mb-40 relative" id="home">
-            <div class="grid lg:grid-cols-12 gap-12 items-center">
-                <div class="lg:col-span-8">
+            <div class="max-w-4xl">
 
-                    <!-- Available badge -->
-                    <div class="hero-badge inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-tertiary-container/10 border border-tertiary/20 mb-6">
-                        <span class="available-dot w-2 h-2 rounded-full bg-tertiary"></span>
-                        <span class="text-xs font-label uppercase tracking-widest text-tertiary" data-i18n="hero.badge">Available for remote roles</span>
-                    </div>
-
-                    <!-- Headline -->
-                    <h1 class="hero-title font-headline font-black text-6xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tighter mb-8">
-                        Muhammad <span class="text-primary italic">Mohsin</span>
-                    </h1>
-
-                    <!-- Subtitle — text nodes only, no innerHTML writes -->
-                    <p class="hero-subtitle text-xl md:text-2xl text-on-surface-variant max-w-2xl font-light mb-12">
-                        <span data-i18n="hero.sub.pre">Software Engineer specializing in </span><span class="text-on-surface font-medium" data-i18n="hero.sub.hl1">Flutter Architecture</span><span data-i18n="hero.sub.mid"> &amp; </span><span class="text-on-surface font-medium" data-i18n="hero.sub.hl2">Robust Backend Systems</span><span data-i18n="hero.sub.end">. Building performant digital experiences with architectural precision.</span>
-                    </p>
-
-                    <!-- CTA buttons -->
-                    <div class="hero-buttons flex flex-wrap gap-4">
-                        <button class="btn-ripple px-8 py-4 bg-primary text-on-primary font-bold text-lg rounded-lg shadow-2xl shadow-primary/20 hover:-translate-y-[3px] transition-transform duration-200"
-                            data-i18n="hero.cta1">View Projects</button>
-                        <button class="btn-ripple px-8 py-4 glass-card text-on-surface font-bold text-lg rounded-lg hover:bg-surface-variant/60 transition-all flex items-center space-x-2">
-                            <span class="material-symbols-outlined">mail</span>
-                            <span data-i18n="hero.cta2">Get in Touch</span>
-                        </button>
-                    </div>
+                <div class="hero-badge inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-tertiary-container/10 border border-tertiary/20 mb-6">
+                    <span class="available-dot w-2 h-2 rounded-full bg-tertiary"></span>
+                    <span class="text-xs font-label uppercase tracking-widest text-tertiary" data-i18n="hero.badge">Open to Opportunities</span>
                 </div>
 
-                <!-- Hero image -->
-                <div class="hero-image lg:col-span-4 hidden lg:block">
-                    <div class="hero-float relative w-full aspect-square bg-surface-container rounded-3xl overflow-hidden glass-card">
-                        <img alt="Professional portrait of Muhammad Mohsin"
-                            class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxfipMb80heVhOAndF7AIiejeKzhGVvuC98i0zbS7SyHxR95gSMxC2cQboaWd8OtsYZsXqXezMbc8OmT8DJlAOGlcKTp2R9ZUi5DqFq87ouS3RJBbQTgQB2YpjraUCNJLhd-KbJZ5Ol10AqC4b6LbKjjwAYEGGXo827HxXcl1PgugaDhuw5QqaSm4wNf1HsnPUvTM-YE4QxoqUOz94cUdWZk-4-cDn0DnX3J_e8vuz_NX0OvUkrQh9lWggQ6nGp4T_MIksgMSs-Ss" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60"></div>
-                    </div>
+                <h1 class="hero-title font-headline font-black text-6xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tighter mb-8">
+                    Kiran <span class="text-primary italic">Akbar</span>
+                </h1>
+
+                <p class="hero-subtitle text-xl md:text-2xl text-on-surface-variant max-w-3xl font-light mb-4">
+                    <span data-i18n="hero.sub.pre">Business Relationship Officer with expertise in </span><span class="text-on-surface font-medium" data-i18n="hero.sub.hl1">Fintech Operations</span><span data-i18n="hero.sub.mid">, </span><span class="text-on-surface font-medium" data-i18n="hero.sub.hl2">Compliance & Partner Management</span><span data-i18n="hero.sub.end">, and Education. Bridging international markets across UK, Spain, and Italy.</span>
+                </p>
+                <p class="hero-subtitle text-base text-on-surface-variant/60 font-label mb-12 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-base">location_on</span>
+                    <span>Kharian, Gujrat, Pakistan</span>
+                    <span class="mx-2">·</span>
+                    <span class="material-symbols-outlined text-base">mail</span>
+                    <span>kiranakbar113@gmail.com</span>
+                </p>
+
+                <div class="hero-buttons flex flex-wrap gap-4">
+                    <a href="mailto:kiranakbar113@gmail.com"
+                        class="btn-ripple px-8 py-4 bg-primary text-on-primary font-bold text-lg rounded-lg shadow-2xl shadow-primary/20 hover:-translate-y-[3px] transition-transform duration-200"
+                        data-i18n="hero.cta1">Hire Me</a>
+                    <a href="#experience"
+                        class="btn-ripple px-8 py-4 glass-card text-on-surface font-bold text-lg rounded-lg hover:bg-surface-variant/60 transition-all flex items-center space-x-2">
+                        <span class="material-symbols-outlined">work_history</span>
+                        <span data-i18n="hero.cta2">View Experience</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -404,36 +392,34 @@
             <div class="max-w-7xl mx-auto px-6 md:px-8">
                 <div class="grid md:grid-cols-2 gap-20 items-start">
 
-                    <!-- Text -->
                     <div class="anim-fade-left">
                         <h2 class="font-headline text-4xl font-bold mb-8">
                             <span class="title-line">
-                                <span data-i18n="about.title.pre">Engineering with </span><span class="text-primary" data-i18n="about.title.hl">Intent</span>
+                                <span data-i18n="about.title.pre">A Versatile </span><span class="text-primary" data-i18n="about.title.hl">Professional</span>
                             </span>
                         </h2>
                         <div class="space-y-6 text-on-surface-variant text-lg leading-relaxed">
-                            <p data-i18n="about.p1">With a foundation in computer science and a passion for clean code, I bridge the gap between complex backend logic and fluid user interfaces. My approach is rooted in the "Editorial Engineer" philosophy—where every line of code is intentional, and every UI element serves a purpose.</p>
-                            <p data-i18n="about.p2">Based in Stockholm, Sweden, I work with global teams to build scalable applications that solve real-world problems, from automated OCR systems to high-traffic mobile platforms.</p>
+                            <p>Versatile professional with experience in teaching, operations, and financial services. Skilled in managing partner relations, compliance support, and daily operations within the remittance sector, alongside four years of teaching experience fostering creativity and critical thinking.</p>
+                            <p>Strong communicator with proven ability to adapt across diverse roles and deliver results in dynamic environments. Demonstrated expertise in business relationship management, regulatory compliance, and educational leadership with a passion for continuous learning and professional growth.</p>
                         </div>
                     </div>
 
-                    <!-- Stats grid -->
                     <div class="grid grid-cols-2 gap-4">
                         <div class="stat-card anim-scale d1 p-8 bg-surface-container rounded-2xl border border-outline-variant/10">
                             <div class="text-primary text-4xl font-headline font-black mb-2 stat-number" data-count="5" data-suffix="+">5+</div>
-                            <div class="text-sm font-label uppercase tracking-widest text-on-surface-variant" data-i18n="about.years">Years Exp</div>
+                            <div class="text-sm font-label uppercase tracking-widest text-on-surface-variant" data-i18n="about.stat1">Years Exp</div>
                         </div>
                         <div class="stat-card anim-scale d2 p-8 bg-surface-container rounded-2xl border border-outline-variant/10">
-                            <div class="text-primary text-4xl font-headline font-black mb-2 stat-number" data-count="20" data-suffix="+">20+</div>
-                            <div class="text-sm font-label uppercase tracking-widest text-on-surface-variant" data-i18n="about.projects">Projects Done</div>
+                            <div class="text-primary text-4xl font-headline font-black mb-2 stat-number" data-count="5" data-suffix="">5</div>
+                            <div class="text-sm font-label uppercase tracking-widest text-on-surface-variant" data-i18n="about.stat2">Roles Held</div>
                         </div>
                         <div class="stat-card anim-scale d3 p-8 bg-surface-container rounded-2xl border border-outline-variant/10">
-                            <div class="text-primary text-4xl font-headline font-black mb-2">100%</div>
-                            <div class="text-sm font-label uppercase tracking-widest text-on-surface-variant" data-i18n="about.remote">Remote Ready</div>
+                            <div class="text-primary text-4xl font-headline font-black mb-2 stat-number" data-count="3" data-suffix="">3</div>
+                            <div class="text-sm font-label uppercase tracking-widest text-on-surface-variant" data-i18n="about.stat3">Countries</div>
                         </div>
                         <div class="stat-card anim-scale d4 p-8 bg-surface-container rounded-2xl border border-outline-variant/10">
-                            <div class="text-primary text-4xl font-headline font-black mb-2" data-i18n="about.clients.value">Global</div>
-                            <div class="text-sm font-label uppercase tracking-widest text-on-surface-variant" data-i18n="about.clients">Client Base</div>
+                            <div class="text-primary text-4xl font-headline font-black mb-2">89%</div>
+                            <div class="text-sm font-label uppercase tracking-widest text-on-surface-variant" data-i18n="about.stat4">BS IT Grade</div>
                         </div>
                     </div>
                 </div>
@@ -444,74 +430,75 @@
         <section class="py-32 max-w-7xl mx-auto px-6 md:px-8" id="skills">
             <h2 class="font-headline text-4xl font-bold mb-16 text-center anim-fade-up">
                 <span class="title-line">
-                    <span data-i18n="skills.title.pre">Technical </span><span class="text-primary" data-i18n="skills.title.hl">Stack</span>
+                    <span data-i18n="skills.title.pre">Core </span><span class="text-primary" data-i18n="skills.title.hl">Competencies</span>
                 </span>
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-6">
 
-                <!-- Programming -->
+                <!-- Remittance & Fintech -->
                 <div class="card-lift anim-fade-up d1 md:col-span-2 lg:col-span-3 p-8 glass-card rounded-3xl">
                     <div class="flex items-center space-x-3 mb-6">
-                        <span class="material-symbols-outlined text-primary">code</span>
-                        <h3 class="font-headline text-xl font-bold" data-i18n="skills.prog">Programming</h3>
+                        <span class="material-symbols-outlined text-primary">payments</span>
+                        <h3 class="font-headline text-xl font-bold">Remittance &amp; Fintech</h3>
                     </div>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Dart / Flutter</span>
-                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Python</span>
-                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">TypeScript</span>
-                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">C++</span>
+                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Partner Management</span>
+                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Agent Onboarding</span>
+                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Settlement</span>
+                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Transaction Monitoring</span>
                     </div>
                 </div>
 
-                <!-- Backend -->
+                <!-- Compliance & Governance -->
                 <div class="card-lift anim-fade-up d2 md:col-span-2 lg:col-span-3 p-8 glass-card rounded-3xl">
                     <div class="flex items-center space-x-3 mb-6">
-                        <span class="material-symbols-outlined text-primary">storage</span>
-                        <h3 class="font-headline text-xl font-bold" data-i18n="skills.backend">Backend &amp; APIs</h3>
+                        <span class="material-symbols-outlined text-primary">gavel</span>
+                        <h3 class="font-headline text-xl font-bold">Compliance &amp; Governance</h3>
                     </div>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Node.js</span>
-                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Django</span>
-                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">RESTful APIs</span>
-                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">GraphQL</span>
+                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">AML Knowledge</span>
+                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Due Diligence</span>
+                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Regulatory Docs</span>
+                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Internal Controls</span>
                     </div>
                 </div>
 
-                <!-- DevOps -->
+                <!-- Operations & Sales -->
                 <div class="card-lift anim-fade-up d3 md:col-span-2 lg:col-span-2 p-8 glass-card rounded-3xl">
                     <div class="flex items-center space-x-3 mb-6">
-                        <span class="material-symbols-outlined text-primary">cloud_done</span>
-                        <h3 class="font-headline text-xl font-bold" data-i18n="skills.devops">DevOps</h3>
+                        <span class="material-symbols-outlined text-primary">trending_up</span>
+                        <h3 class="font-headline text-xl font-bold">Operations &amp; Sales</h3>
                     </div>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Docker</span>
-                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">AWS</span>
-                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">CI/CD</span>
+                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Reporting</span>
+                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Budget Tracking</span>
+                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Client Support</span>
                     </div>
                 </div>
 
-                <!-- Databases -->
+                <!-- Education & Training -->
                 <div class="card-lift anim-fade-up d4 md:col-span-2 lg:col-span-2 p-8 glass-card rounded-3xl">
                     <div class="flex items-center space-x-3 mb-6">
-                        <span class="material-symbols-outlined text-primary">database</span>
-                        <h3 class="font-headline text-xl font-bold" data-i18n="skills.db">Databases</h3>
+                        <span class="material-symbols-outlined text-primary">school</span>
+                        <h3 class="font-headline text-xl font-bold">Education &amp; Training</h3>
                     </div>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">PostgreSQL</span>
-                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">MongoDB</span>
-                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Firebase</span>
+                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Cambridge Curriculum</span>
+                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Mentoring</span>
+                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Assessment Design</span>
                     </div>
                 </div>
 
-                <!-- 3D Graphics -->
+                <!-- Digital & Technical -->
                 <div class="card-lift anim-fade-up d5 md:col-span-4 lg:col-span-2 p-8 glass-card rounded-3xl">
                     <div class="flex items-center space-x-3 mb-6">
-                        <span class="material-symbols-outlined text-primary">view_in_ar</span>
-                        <h3 class="font-headline text-xl font-bold" data-i18n="skills.3d">3D Graphics</h3>
+                        <span class="material-symbols-outlined text-primary">devices</span>
+                        <h3 class="font-headline text-xl font-bold">Digital &amp; Tech</h3>
                     </div>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Three.js</span>
-                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">WebGl</span>
+                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">MS Office</span>
+                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">Web Design</span>
+                        <span class="skill-tag px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-sm font-label uppercase tracking-wider">SEO</span>
                     </div>
                 </div>
             </div>
@@ -522,7 +509,7 @@
             <div class="max-w-7xl mx-auto px-6 md:px-8">
                 <h2 class="font-headline text-4xl font-bold mb-16 anim-fade-up">
                     <span class="title-line">
-                        <span data-i18n="exp.title.pre">Work </span><span class="text-primary" data-i18n="exp.title.hl">Trajectory</span>
+                        <span data-i18n="exp.title.pre">Work </span><span class="text-primary" data-i18n="exp.title.hl">Experience</span>
                     </span>
                 </h2>
                 <div class="space-y-12">
@@ -532,12 +519,13 @@
                         <div class="timeline-dot absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-primary"></div>
                         <div class="grid md:grid-cols-4 gap-8">
                             <div class="md:col-span-1">
-                                <span class="text-sm font-label uppercase tracking-widest text-on-surface-variant" data-i18n="exp.1.period">2022 — Present</span>
-                                <h4 class="font-headline font-bold text-lg text-primary" data-i18n="exp.1.title">Senior Flutter Developer</h4>
-                                <p class="text-sm text-gray-500" data-i18n="exp.1.company">TechInnovate Stockholm</p>
+                                <span class="text-sm font-label uppercase tracking-widest text-on-surface-variant">2025 &mdash; 2026</span>
+                                <h4 class="font-headline font-bold text-lg text-primary">Business Relationship Officer</h4>
+                                <p class="text-sm text-gray-500">IZI Send &amp; RemitRio</p>
+                                <p class="text-xs text-gray-500 mt-1">UK &amp; Spain · Remote</p>
                             </div>
                             <div class="md:col-span-3">
-                                <p class="text-on-surface-variant leading-relaxed" data-i18n="exp.1.desc">Leading the development of cross-platform mobile solutions for enterprise clients. Architecting state management patterns (BLoC/Provider) to ensure code reusability and high performance. Mentoring junior developers and implementing automated testing suites.</p>
+                                <p class="text-on-surface-variant leading-relaxed">Developed and managed strategic relationships with acquirers, banks and agents, ensuring smooth onboarding, settlement and transaction flows. Collaborated with compliance and operations teams to align processes with regulatory requirements. Provided comprehensive partner and agent support addressing due diligence and documentation needs.</p>
                             </div>
                         </div>
                     </div>
@@ -547,12 +535,13 @@
                         <div class="timeline-dot absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-outline group-hover:bg-primary"></div>
                         <div class="grid md:grid-cols-4 gap-8">
                             <div class="md:col-span-1">
-                                <span class="text-sm font-label uppercase tracking-widest text-on-surface-variant" data-i18n="exp.2.period">2020 — 2022</span>
-                                <h4 class="font-headline font-bold text-lg" data-i18n="exp.2.title">Full-Stack Engineer</h4>
-                                <p class="text-sm text-gray-500" data-i18n="exp.2.company">Remote Solutions Ltd</p>
+                                <span class="text-sm font-label uppercase tracking-widest text-on-surface-variant">2024 &mdash; 2025</span>
+                                <h4 class="font-headline font-bold text-lg">Teacher</h4>
+                                <p class="text-sm text-gray-500">Beaconhouse Kharian</p>
+                                <p class="text-xs text-gray-500 mt-1">Kharian, Pakistan</p>
                             </div>
                             <div class="md:col-span-3">
-                                <p class="text-on-surface-variant leading-relaxed" data-i18n="exp.2.desc">Developed backend microservices using Node.js and Django. Integrated OCR capabilities for automated document processing systems. Maintained and scaled PostgreSQL databases for high-concurrency applications.</p>
+                                <p class="text-on-surface-variant leading-relaxed">Applied Cambridge curriculum strategies to foster creativity, problem-solving, and independent learning. Implemented innovative teaching methodologies to enhance student engagement and academic performance. Developed student assessment and evaluation systems aligned with Cambridge international standards.</p>
                             </div>
                         </div>
                     </div>
@@ -562,90 +551,163 @@
                         <div class="timeline-dot absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-outline group-hover:bg-primary"></div>
                         <div class="grid md:grid-cols-4 gap-8">
                             <div class="md:col-span-1">
-                                <span class="text-sm font-label uppercase tracking-widest text-on-surface-variant" data-i18n="exp.3.period">2018 — 2020</span>
-                                <h4 class="font-headline font-bold text-lg" data-i18n="exp.3.title">Software Developer</h4>
-                                <p class="text-sm text-gray-500" data-i18n="exp.3.company">AppCraft Agency</p>
+                                <span class="text-sm font-label uppercase tracking-widest text-on-surface-variant">2023 &mdash; 2024</span>
+                                <h4 class="font-headline font-bold text-lg">Operations Officer</h4>
+                                <p class="text-sm text-gray-500">IZI TOPUP</p>
+                                <p class="text-xs text-gray-500 mt-1">Italy · Remote</p>
                             </div>
                             <div class="md:col-span-3">
-                                <p class="text-on-surface-variant leading-relaxed" data-i18n="exp.3.desc">Focused on Android/iOS native development before transitioning to Flutter. Built and deployed over 10 mobile apps to the App Store and Google Play Store.</p>
+                                <p class="text-on-surface-variant leading-relaxed">Maintained financial records and oversaw daily operations, ensuring accurate financial reporting and operational compliance. Managed budget oversight, reporting, strategic planning and sales team follow-up. Streamlined operational processes and implemented systematic approaches to enhance efficiency.</p>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Job 4 -->
+                    <div class="anim-fade-up d4 relative pl-8 border-l border-outline-variant/30 group">
+                        <div class="timeline-dot absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-outline group-hover:bg-primary"></div>
+                        <div class="grid md:grid-cols-4 gap-8">
+                            <div class="md:col-span-1">
+                                <span class="text-sm font-label uppercase tracking-widest text-on-surface-variant">2022 &mdash; 2023</span>
+                                <h4 class="font-headline font-bold text-lg">Sales Officer</h4>
+                                <p class="text-sm text-gray-500">IZI TOPUP</p>
+                                <p class="text-xs text-gray-500 mt-1">Italy · Remote</p>
+                            </div>
+                            <div class="md:col-span-3">
+                                <p class="text-on-surface-variant leading-relaxed">Gained diverse experience in sales, research and development activities, acquiring extensive exposure to systematic market knowledge and customer relationship management. Contributed to revenue generation through effective sales strategies in the Italian market.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job 5 -->
+                    <div class="anim-fade-up d5 relative pl-8 border-l border-outline-variant/30 group">
+                        <div class="timeline-dot absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-outline group-hover:bg-primary"></div>
+                        <div class="grid md:grid-cols-4 gap-8">
+                            <div class="md:col-span-1">
+                                <span class="text-sm font-label uppercase tracking-widest text-on-surface-variant">2020 &mdash; 2024</span>
+                                <h4 class="font-headline font-bold text-lg">Teacher</h4>
+                                <p class="text-sm text-gray-500">Garrison Academy Kharian</p>
+                                <p class="text-xs text-gray-500 mt-1">Kharian, Pakistan</p>
+                            </div>
+                            <div class="md:col-span-3">
+                                <p class="text-on-surface-variant leading-relaxed">Applied innovative teaching strategies to build strong subject knowledge, discipline, and academic growth in students at this prestigious FGEI institution. Mentored students in developing critical thinking skills while maintaining high standards expected in a military-affiliated institution.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ════════════════════ EDUCATION ════════════════════ -->
+        <section class="py-32 max-w-7xl mx-auto px-6 md:px-8" id="education">
+            <h2 class="font-headline text-4xl font-bold mb-16 anim-fade-up">
+                <span class="title-line">
+                    <span data-i18n="edu.title.pre">Academic </span><span class="text-primary" data-i18n="edu.title.hl">Background</span>
+                </span>
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8">
+
+                <!-- BS IT -->
+                <div class="edu-card anim-fade-up d1 p-8 glass-card rounded-3xl border border-outline-variant/10">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="p-3 rounded-2xl bg-primary/10">
+                            <span class="material-symbols-outlined text-primary text-3xl">school</span>
+                        </div>
+                        <span class="text-sm font-label uppercase tracking-widest text-primary px-3 py-1 rounded-full bg-primary/10">2016 &mdash; 2020</span>
+                    </div>
+                    <h3 class="font-headline text-xl font-bold mb-1">BS Hons. Information Technology</h3>
+                    <p class="text-primary font-medium mb-1">University of Gujrat</p>
+                    <p class="text-sm text-gray-500 mb-4">Gujrat, Pakistan</p>
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-tertiary font-headline font-black text-2xl">89%</span>
+                        <span class="text-on-surface-variant text-sm">Final Grade</span>
+                    </div>
+                    <p class="text-on-surface-variant text-sm leading-relaxed">Programming Fundamentals, Data Structures, Algorithms, Web Development, Database Management, Research Methodologies, Fog Computing Research Project.</p>
+                </div>
+
+                <!-- Intermediate -->
+                <div class="edu-card anim-fade-up d2 p-8 glass-card rounded-3xl border border-outline-variant/10">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="p-3 rounded-2xl bg-tertiary/10">
+                            <span class="material-symbols-outlined text-tertiary text-3xl">menu_book</span>
+                        </div>
+                        <span class="text-sm font-label uppercase tracking-widest text-tertiary px-3 py-1 rounded-full bg-tertiary/10">2014 &mdash; 2016</span>
+                    </div>
+                    <h3 class="font-headline text-xl font-bold mb-1">Intermediate in Computer Science</h3>
+                    <p class="text-tertiary font-medium mb-1">Punjab College</p>
+                    <p class="text-sm text-gray-500 mb-4">Gujrat, Pakistan</p>
+                    <p class="text-on-surface-variant text-sm leading-relaxed">Computer Science Fundamentals, Mathematics, Physics, Programming Basics.</p>
+
+                    <!-- Research Project -->
+                    <div class="mt-6 pt-6 border-t border-outline-variant/20">
+                        <p class="text-xs font-label uppercase tracking-widest text-on-surface-variant mb-2">Research Project</p>
+                        <p class="font-headline font-bold text-sm mb-1">Fog Computing Research Project</p>
+                        <p class="text-on-surface-variant text-xs leading-relaxed">Investigated distributed computing architectures and edge computing solutions to address latency and bandwidth challenges in IoT environments. Supervised by Dr. Hanan Bin Liaqat &amp; Prof. Usman Zia.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ════════════════════ PROJECTS ════════════════════ -->
-        <section class="py-32 max-w-7xl mx-auto px-6 md:px-8" id="projects">
-            <div class="flex justify-between items-end mb-16 anim-fade-up">
-                <div>
-                    <h2 class="font-headline text-4xl font-bold">
-                        <span class="title-line">
-                            <span data-i18n="proj.title.pre">Featured </span><span class="text-primary" data-i18n="proj.title.hl">Engineering</span>
-                        </span>
-                    </h2>
-                    <p class="text-on-surface-variant mt-3" data-i18n="proj.subtitle">Selected architectural case studies</p>
-                </div>
-                <a class="hidden md:flex items-center space-x-2 text-primary font-bold group" href="#">
-                    <span data-i18n="proj.viewall">View All Repositories</span>
-                    <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
-                </a>
-            </div>
+        <!-- ════════════════════ ACHIEVEMENTS ════════════════════ -->
+        <section class="bg-surface-container-low py-32" id="achievements">
+            <div class="max-w-7xl mx-auto px-6 md:px-8">
+                <h2 class="font-headline text-4xl font-bold mb-16 anim-fade-up">
+                    <span class="title-line">
+                        <span data-i18n="ach.title.pre">Key </span><span class="text-primary" data-i18n="ach.title.hl">Achievements</span>
+                    </span>
+                </h2>
+                <div class="grid md:grid-cols-2 gap-6">
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-                <!-- Project 1 -->
-                <div class="card-lift anim-fade-up d1 group">
-                    <div class="aspect-video bg-surface-container rounded-2xl overflow-hidden mb-6 relative">
-                        <img alt="Taxi App UI"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKXue5DcgakNg2fyzPGWEuEf2AzaiM5lhZ00IfxmeP1uxwTwmtQ473sAX36uVJKKn1i6qTB4Py23UcP6pornqa8JQqdOQf6YVwLfgksBmONJGhGEB7AhwVKgGlWFwhs187_nC6aK9pQEQoSIlyqKHqNPtG3hDOVF6WRHG2A7R_oIYspxAeVdQbqCjLg6WqVtDAAzpR7jC_BcaVHgiyshsPWeWU0QBe5n5QHJRCtikrI6ifhmTNDcTU-ukl7Ehx6oDuQp0wNpYWZSk" />
-                        <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-white text-4xl">open_in_new</span>
+                    <div class="achieve-item anim-fade-up d1 flex items-start gap-4 p-6 glass-card rounded-2xl">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-xl">workspace_premium</span>
+                        </div>
+                        <div>
+                            <p class="font-headline font-bold mb-1">Staff Development Certificate Course (SDCC)</p>
+                            <p class="text-on-surface-variant text-sm">Completed for professional development in education sector.</p>
                         </div>
                     </div>
-                    <div class="flex gap-2 mb-4">
-                        <span class="proj-tag text-[10px] font-label uppercase tracking-tighter px-2 py-1 rounded bg-surface-container-highest text-on-surface-variant">Flutter</span>
-                        <span class="proj-tag text-[10px] font-label uppercase tracking-tighter px-2 py-1 rounded bg-surface-container-highest text-on-surface-variant">Firebase</span>
-                    </div>
-                    <h3 class="font-headline text-xl font-bold mb-3 group-hover:text-primary transition-colors" data-i18n="proj.taxi.name">Taxi Exam App</h3>
-                    <p class="text-on-surface-variant text-sm leading-relaxed mb-6" data-i18n="proj.taxi.desc">A comprehensive simulation platform for taxi licensing exams. Featuring real-time mock tests, progress tracking, and interactive traffic sign flashcards.</p>
-                </div>
 
-                <!-- Project 2 -->
-                <div class="card-lift anim-fade-up d2 group">
-                    <div class="aspect-video bg-surface-container rounded-2xl overflow-hidden mb-6 relative">
-                        <img alt="OCR Automation System"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC82NQMMUeCp4iHpnYRqF7yuTZfT7vD42eUiwhAOLFr3QR98a0_tYDmA_rYYM56K0zDgk29IMmWFc-XxJTjEOOJyvmANZ5deT2Kxrvrpp2C1nzW9J_EEQBJOSEvRHv96OmWmETGMa9pG6RSe_41TQy_OgPcF0qkgP8WN0Uzbo_e8jXdEAtcd6tj9OX6EPLqUWTD8BauKpIaRqPHqB-edPzc0HLcNl85gXGuQbPfsEs6KH8YGgTPHwRQAggLfow0Qa8s0i0OC-VdMwM" />
-                        <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-white text-4xl">open_in_new</span>
+                    <div class="achieve-item anim-fade-up d2 flex items-start gap-4 p-6 glass-card rounded-2xl">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-xl">verified</span>
+                        </div>
+                        <div>
+                            <p class="font-headline font-bold mb-1">Digital Skills Training Certification</p>
+                            <p class="text-on-surface-variant text-sm">Achieved certification in digital skills for modern work environments.</p>
                         </div>
                     </div>
-                    <div class="flex gap-2 mb-4">
-                        <span class="proj-tag text-[10px] font-label uppercase tracking-tighter px-2 py-1 rounded bg-surface-container-highest text-on-surface-variant">Python</span>
-                        <span class="proj-tag text-[10px] font-label uppercase tracking-tighter px-2 py-1 rounded bg-surface-container-highest text-on-surface-variant">AWS</span>
-                    </div>
-                    <h3 class="font-headline text-xl font-bold mb-3 group-hover:text-primary transition-colors" data-i18n="proj.ocr.name">OCR Automation System</h3>
-                    <p class="text-on-surface-variant text-sm leading-relaxed mb-6" data-i18n="proj.ocr.desc">Automated data extraction pipeline from handwritten forms with 98% accuracy. Built using Tesseract and AWS Lambda for scalable processing.</p>
-                </div>
 
-                <!-- Project 3 -->
-                <div class="card-lift anim-fade-up d3 group">
-                    <div class="aspect-video bg-surface-container rounded-2xl overflow-hidden mb-6 relative">
-                        <img alt="Multi-Shop Inventory App"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBILzmLn9AYl-TFKKGlMn0LDQaL9wAsF6L9C4zxxIOdxZBS97Jgy7PiRD16wugSyKzP5WvXC60O23e8tzdXB2G5p4uNiWlQ4UY2CvPb0epENneva0zBYRcAizcXMA8CrS0fs8WbOvvXszqRT_Sl6gV5Lqe6vg0P5KSIutCOBAmdPKoVt9DEZj_NEofjYMZgP-FklW95uu5gGmO_xVwa22hdKOo5DIV1aRcLXc62QoenICEdvVmxlVWtDsOzkRAWSnoLdyo9cboonp0" />
-                        <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <span class="material-symbols-outlined text-white text-4xl">open_in_new</span>
+                    <div class="achieve-item anim-fade-up d3 flex items-start gap-4 p-6 glass-card rounded-2xl">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-tertiary/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-tertiary text-xl">science</span>
+                        </div>
+                        <div>
+                            <p class="font-headline font-bold mb-1">Fog Computing Research — 89% Academic Score</p>
+                            <p class="text-on-surface-variant text-sm">Successfully completed academic research project and maintained excellent academic performance in BS Information Technology.</p>
                         </div>
                     </div>
-                    <div class="flex gap-2 mb-4">
-                        <span class="proj-tag text-[10px] font-label uppercase tracking-tighter px-2 py-1 rounded bg-surface-container-highest text-on-surface-variant">Node.js</span>
-                        <span class="proj-tag text-[10px] font-label uppercase tracking-tighter px-2 py-1 rounded bg-surface-container-highest text-on-surface-variant">PostgreSQL</span>
+
+                    <div class="achieve-item anim-fade-up d4 flex items-start gap-4 p-6 glass-card rounded-2xl">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-tertiary/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-tertiary text-xl">public</span>
+                        </div>
+                        <div>
+                            <p class="font-headline font-bold mb-1">International Fintech Partnerships</p>
+                            <p class="text-on-surface-variant text-sm">Built strong partnerships with international remittance companies across UK, Spain, and Italy.</p>
+                        </div>
                     </div>
-                    <h3 class="font-headline text-xl font-bold mb-3 group-hover:text-primary transition-colors" data-i18n="proj.inventory.name">Multi-Shop Inventory App</h3>
-                    <p class="text-on-surface-variant text-sm leading-relaxed mb-6" data-i18n="proj.inventory.desc">Enterprise-grade inventory management system supporting multi-location sync, low-stock alerts, and detailed financial reporting.</p>
+
+                    <div class="achieve-item anim-fade-up d5 flex items-start gap-4 p-6 glass-card rounded-2xl md:col-span-2">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-xl">swap_horiz</span>
+                        </div>
+                        <div>
+                            <p class="font-headline font-bold mb-1">Cross-Sector Adaptability</p>
+                            <p class="text-on-surface-variant text-sm">Demonstrated versatility by successfully transitioning between education and international financial services sectors, excelling in both.</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -654,12 +716,12 @@
         <section class="py-32 bg-primary">
             <div class="max-w-7xl mx-auto px-6 md:px-8 text-center">
                 <h2 class="anim-fade-up font-headline text-5xl md:text-7xl font-black text-on-primary tracking-tighter mb-12">
-                    <span data-i18n="cta.title.pre">Let's Build the </span><span class="italic underline decoration-4" data-i18n="cta.title.hl">Future</span><span data-i18n="cta.title.post"> Together</span>
+                    <span data-i18n="cta.title.pre">Let's Work </span><span class="italic underline decoration-4" data-i18n="cta.title.hl">Together</span>
                 </h2>
                 <div class="anim-fade-up d1 flex flex-col md:flex-row items-center justify-center gap-6">
                     <a class="cta-btn btn-ripple px-12 py-5 bg-on-primary text-primary font-bold text-xl rounded-full"
-                        href="mailto:mohsin.sapra@gmail.com" data-i18n="cta.button">Hire Me Now</a>
-                    <span class="text-on-primary/80 font-label uppercase tracking-widest text-sm" data-i18n="cta.location">Stockholm, Sweden | Remote Ready</span>
+                        href="mailto:kiranakbar113@gmail.com" data-i18n="cta.button">Get in Touch</a>
+                    <span class="text-on-primary/80 font-label uppercase tracking-widest text-sm" data-i18n="cta.location">Kharian, Pakistan &nbsp;|&nbsp; Open to Remote</span>
                 </div>
             </div>
         </section>
@@ -668,14 +730,13 @@
     <!-- ════════════════════ FOOTER ════════════════════ -->
     <footer class="bg-[#1c1b1b] border-t border-[#353534]/30 w-full py-12 px-6 md:px-8">
         <div class="flex flex-col md:flex-row justify-between items-center gap-6 max-w-7xl mx-auto">
-            <div class="text-lg font-bold text-[#89ceff] font-headline">M. MOHSIN</div>
+            <div class="text-lg font-bold text-[#89ceff] font-headline">K. AKBAR</div>
             <div class="flex space-x-8">
-                <a class="footer-link text-gray-500 hover:text-[#73d9b5] font-label text-sm tracking-wide" href="#">GitHub</a>
+                <a class="footer-link text-gray-500 hover:text-[#73d9b5] font-label text-sm tracking-wide" href="mailto:kiranakbar113@gmail.com">Email</a>
                 <a class="footer-link text-gray-500 hover:text-[#73d9b5] font-label text-sm tracking-wide" href="#">LinkedIn</a>
-                <a class="footer-link text-gray-500 hover:text-[#73d9b5] font-label text-sm tracking-wide" href="#">Twitter</a>
-                <a class="footer-link text-gray-500 hover:text-[#73d9b5] font-label text-sm tracking-wide" href="#">Email</a>
+                <a class="footer-link text-gray-500 hover:text-[#73d9b5] font-label text-sm tracking-wide" href="#">GitHub</a>
             </div>
-            <p class="text-gray-500 font-label text-sm tracking-wide" data-i18n="footer.copy">© 2024 Muhammad Mohsin. Built with Precision.</p>
+            <p class="text-gray-500 font-label text-sm tracking-wide" data-i18n="footer.copy">© 2025 Kiran Akbar. Built with Precision.</p>
         </div>
     </footer>
 
@@ -684,122 +745,72 @@
     (function () {
         'use strict';
 
-        /* ── TRANSLATIONS (text-only, no HTML strings) ─────────────────── */
+        /* ── TRANSLATIONS ── */
         var T = {
             en: {
                 'nav.home': 'Home', 'nav.about': 'About', 'nav.skills': 'Skills',
-                'nav.experience': 'Experience', 'nav.projects': 'Projects',
-                'nav.download': 'Download CV',
-                'hero.badge': 'Available for remote roles',
-                'hero.sub.pre': 'Software Engineer specializing in ',
-                'hero.sub.hl1': 'Flutter Architecture',
-                'hero.sub.mid': '\u00a0& ',
-                'hero.sub.hl2': 'Robust Backend Systems',
-                'hero.sub.end': '. Building performant digital experiences with architectural precision.',
-                'hero.cta1': 'View Projects', 'hero.cta2': 'Get in Touch',
-                'about.title.pre': 'Engineering with ', 'about.title.hl': 'Intent',
-                'about.p1': 'With a foundation in computer science and a passion for clean code, I bridge the gap between complex backend logic and fluid user interfaces. My approach is rooted in the \u201cEditorial Engineer\u201d philosophy\u2014where every line of code is intentional, and every UI element serves a purpose.',
-                'about.p2': 'Based in Stockholm, Sweden, I work with global teams to build scalable applications that solve real-world problems, from automated OCR systems to high-traffic mobile platforms.',
-                'about.years': 'Years Exp', 'about.projects': 'Projects Done',
-                'about.remote': 'Remote Ready', 'about.clients': 'Client Base',
-                'about.clients.value': 'Global',
-                'skills.title.pre': 'Technical ', 'skills.title.hl': 'Stack',
-                'skills.prog': 'Programming', 'skills.backend': 'Backend & APIs',
-                'skills.devops': 'DevOps', 'skills.db': 'Databases', 'skills.3d': '3D Graphics',
-                'exp.title.pre': 'Work ', 'exp.title.hl': 'Trajectory',
-                'exp.1.period': '2022 \u2014 Present', 'exp.1.title': 'Senior Flutter Developer',
-                'exp.1.company': 'TechInnovate Stockholm',
-                'exp.1.desc': 'Leading the development of cross-platform mobile solutions for enterprise clients. Architecting state management patterns (BLoC/Provider) to ensure code reusability and high performance. Mentoring junior developers and implementing automated testing suites.',
-                'exp.2.period': '2020 \u2014 2022', 'exp.2.title': 'Full-Stack Engineer',
-                'exp.2.company': 'Remote Solutions Ltd',
-                'exp.2.desc': 'Developed backend microservices using Node.js and Django. Integrated OCR capabilities for automated document processing systems. Maintained and scaled PostgreSQL databases for high-concurrency applications.',
-                'exp.3.period': '2018 \u2014 2020', 'exp.3.title': 'Software Developer',
-                'exp.3.company': 'AppCraft Agency',
-                'exp.3.desc': 'Focused on Android/iOS native development before transitioning to Flutter. Built and deployed over 10 mobile apps to the App Store and Google Play Store.',
-                'proj.title.pre': 'Featured ', 'proj.title.hl': 'Engineering',
-                'proj.subtitle': 'Selected architectural case studies',
-                'proj.viewall': 'View All Repositories',
-                'proj.taxi.name': 'Taxi Exam App',
-                'proj.taxi.desc': 'A comprehensive simulation platform for taxi licensing exams. Featuring real-time mock tests, progress tracking, and interactive traffic sign flashcards.',
-                'proj.ocr.name': 'OCR Automation System',
-                'proj.ocr.desc': 'Automated data extraction pipeline from handwritten forms with 98% accuracy. Built using Tesseract and AWS Lambda for scalable processing.',
-                'proj.inventory.name': 'Multi-Shop Inventory App',
-                'proj.inventory.desc': 'Enterprise-grade inventory management system supporting multi-location sync, low-stock alerts, and detailed financial reporting.',
-                'cta.title.pre': "Let\u2019s Build the ", 'cta.title.hl': 'Future', 'cta.title.post': ' Together',
-                'cta.button': 'Hire Me Now', 'cta.location': 'Stockholm, Sweden | Remote Ready',
-                'footer.copy': '\u00a9 2024 Muhammad Mohsin. Built with Precision.',
+                'nav.experience': 'Experience', 'nav.education': 'Education',
+                'nav.achievements': 'Achievements', 'nav.download': 'Download CV',
+                'hero.badge': 'Open to Opportunities',
+                'hero.sub.pre': 'Business Relationship Officer with expertise in ',
+                'hero.sub.hl1': 'Fintech Operations',
+                'hero.sub.mid': ', ',
+                'hero.sub.hl2': 'Compliance & Partner Management',
+                'hero.sub.end': ', and Education. Bridging international markets across UK, Spain, and Italy.',
+                'hero.cta1': 'Hire Me', 'hero.cta2': 'View Experience',
+                'about.title.pre': 'A Versatile ', 'about.title.hl': 'Professional',
+                'about.stat1': 'Years Exp', 'about.stat2': 'Roles Held',
+                'about.stat3': 'Countries', 'about.stat4': 'BS IT Grade',
+                'skills.title.pre': 'Core ', 'skills.title.hl': 'Competencies',
+                'exp.title.pre': 'Work ', 'exp.title.hl': 'Experience',
+                'edu.title.pre': 'Academic ', 'edu.title.hl': 'Background',
+                'ach.title.pre': 'Key ', 'ach.title.hl': 'Achievements',
+                'cta.title.pre': "Let's Work ", 'cta.title.hl': 'Together',
+                'cta.button': 'Get in Touch', 'cta.location': 'Kharian, Pakistan | Open to Remote',
+                'footer.copy': '\u00a9 2025 Kiran Akbar. Built with Precision.',
             },
             sv: {
-                'nav.home': 'Hem', 'nav.about': 'Om mig', 'nav.skills': 'F\u00e4rdigheter',
-                'nav.experience': 'Erfarenhet', 'nav.projects': 'Projekt',
-                'nav.download': 'Ladda ner CV',
-                'hero.badge': 'Tillg\u00e4nglig f\u00f6r distansroller',
-                'hero.sub.pre': 'Mjukvaruingenjör specialiserad på ',
-                'hero.sub.hl1': 'Flutter-arkitektur',
-                'hero.sub.mid': '\u00a0& ',
-                'hero.sub.hl2': 'robusta backend-system',
-                'hero.sub.end': '. Bygger prestanda digitala upplevelser med arkitektonisk precision.',
-                'hero.cta1': 'Visa projekt', 'hero.cta2': 'Kontakta mig',
-                'about.title.pre': 'Ingenjörskonst med ', 'about.title.hl': 'avsikt',
-                'about.p1': 'Med en grund i datavetenskap och en passion för ren kod överbryggar jag klyftan mellan komplex backend-logik och flytande användargränssnitt. Mitt tillvägagångssätt är grundat i filosofin \u201eEditorial Engineer\u201d \u2014 där varje kodrad är avsiktlig och varje UI-element tjänar ett syfte.',
-                'about.p2': 'Baserad i Stockholm, Sverige, arbetar jag med globala team för att bygga skalbara applikationer som löser verkliga problem, från automatiserade OCR-system till mobila plattformar med hög trafik.',
-                'about.years': 'Års erfarenhet', 'about.projects': 'Projekt klara',
-                'about.remote': 'Redo för distans', 'about.clients': 'Kundbas',
-                'about.clients.value': 'Global',
-                'skills.title.pre': 'Teknisk ', 'skills.title.hl': 'stack',
-                'skills.prog': 'Programmering', 'skills.backend': 'Backend & API:er',
-                'skills.devops': 'DevOps', 'skills.db': 'Databaser', 'skills.3d': '3D-grafik',
-                'exp.title.pre': 'Arbets', 'exp.title.hl': 'historik',
-                'exp.1.period': '2022 \u2014 Nu', 'exp.1.title': 'Senior Flutter-utvecklare',
-                'exp.1.company': 'TechInnovate Stockholm',
-                'exp.1.desc': 'Leder utvecklingen av plattformsoberoende mobila lösningar för företagskunder. Utformar tillståndshanteringsmönster (BLoC/Provider) för kodomvändbarhet och hög prestanda. Handleder juniora utvecklare och implementerar automatiserade testsviter.',
-                'exp.2.period': '2020 \u2014 2022', 'exp.2.title': 'Full-stack-ingenjör',
-                'exp.2.company': 'Remote Solutions Ltd',
-                'exp.2.desc': 'Utvecklade backend-mikrotjänster med Node.js och Django. Integrerade OCR-funktioner för automatiserade dokumentbehandlingssystem. Underhöll och skalade PostgreSQL-databaser för applikationer med hög samtidighet.',
-                'exp.3.period': '2018 \u2014 2020', 'exp.3.title': 'Mjukvaruutvecklare',
-                'exp.3.company': 'AppCraft Agency',
-                'exp.3.desc': 'Fokuserade på Android/iOS-nativ utveckling innan övergång till Flutter. Byggde och driftsatte över 10 mobilappar till App Store och Google Play.',
-                'proj.title.pre': 'Utvalda ', 'proj.title.hl': 'projekt',
-                'proj.subtitle': 'Utvalda arkitektoniska fallstudier',
-                'proj.viewall': 'Visa alla förvar',
-                'proj.taxi.name': 'Taxiprov-app',
-                'proj.taxi.desc': 'En heltäckande simuleringsplattform för taxikörkortsprov. Med realtids-provsimuleringar, framstegsspårning och interaktiva vägmärkes-flashcards.',
-                'proj.ocr.name': 'OCR-automatiseringssystem',
-                'proj.ocr.desc': 'Automatiserad datautvinningspipeline från handskrivna formulär med 98% noggrannhet. Byggd med Tesseract och AWS Lambda för skalbar bearbetning.',
-                'proj.inventory.name': 'Flerlagerhanteringsapp',
-                'proj.inventory.desc': 'Företagsklassat lagerhanteringssystem med stöd för synkronisering av flera platser, lagervarningar och detaljerad finansiell rapportering.',
-                'cta.title.pre': 'Låt oss bygga ', 'cta.title.hl': 'framtiden', 'cta.title.post': ' tillsammans',
-                'cta.button': 'Anställ mig nu', 'cta.location': 'Stockholm, Sverige | Redo för distans',
-                'footer.copy': '\u00a9 2024 Muhammad Mohsin. Byggt med precision.',
+                'nav.home': 'Hem', 'nav.about': 'Om mig', 'nav.skills': 'Kompetenser',
+                'nav.experience': 'Erfarenhet', 'nav.education': 'Utbildning',
+                'nav.achievements': 'Meriter', 'nav.download': 'Ladda ner CV',
+                'hero.badge': '\u00d6ppen f\u00f6r m\u00f6jligheter',
+                'hero.sub.pre': 'Business Relationship Officer med expertis inom ',
+                'hero.sub.hl1': 'Fintech-verksamhet',
+                'hero.sub.mid': ', ',
+                'hero.sub.hl2': 'Efterlevnad & Partnerhantering',
+                'hero.sub.end': ', och utbildning. Brobyggare p\u00e5 internationella marknader i UK, Spanien och Italien.',
+                'hero.cta1': 'Anst\u00e4ll mig', 'hero.cta2': 'Se erfarenhet',
+                'about.title.pre': 'En m\u00e5ngsidigt ', 'about.title.hl': 'Professionell',
+                'about.stat1': '\u00c5rs erfarenhet', 'about.stat2': 'Roller',
+                'about.stat3': 'L\u00e4nder', 'about.stat4': 'BS IT Betyg',
+                'skills.title.pre': 'Centrala ', 'skills.title.hl': 'Kompetenser',
+                'exp.title.pre': 'Yrkes', 'exp.title.hl': 'erfarenhet',
+                'edu.title.pre': 'Akademisk ', 'edu.title.hl': 'Bakgrund',
+                'ach.title.pre': 'Viktiga ', 'ach.title.hl': 'Meriter',
+                'cta.title.pre': 'L\u00e5t oss jobba ', 'cta.title.hl': 'tillsammans',
+                'cta.button': 'Kontakta mig', 'cta.location': 'Kharian, Pakistan | \u00d6ppen f\u00f6r distans',
+                'footer.copy': '\u00a9 2025 Kiran Akbar. Byggt med precision.',
             }
         };
 
-        /* ── THEME ──────────────────────────────────────────────────────── */
+        /* ── THEME ── */
         var html      = document.documentElement;
         var themeBtn  = document.getElementById('theme-toggle');
         var themeIcon = document.getElementById('theme-icon');
 
         function applyTheme(dark) {
             document.body.classList.add('theme-transitioning');
-            if (dark) {
-                html.classList.add('dark');
-                themeIcon.textContent = 'dark_mode';
-            } else {
-                html.classList.remove('dark');
-                themeIcon.textContent = 'light_mode';
-            }
+            if (dark) { html.classList.add('dark'); themeIcon.textContent = 'dark_mode'; }
+            else       { html.classList.remove('dark'); themeIcon.textContent = 'light_mode'; }
             localStorage.setItem('theme', dark ? 'dark' : 'light');
             setTimeout(function () { document.body.classList.remove('theme-transitioning'); }, 400);
         }
 
         var savedTheme = localStorage.getItem('theme');
-        applyTheme(savedTheme !== 'light'); // default dark
+        applyTheme(savedTheme !== 'light');
+        themeBtn.addEventListener('click', function () { applyTheme(!html.classList.contains('dark')); });
 
-        themeBtn.addEventListener('click', function () {
-            applyTheme(!html.classList.contains('dark'));
-        });
-
-        /* ── LANGUAGE ───────────────────────────────────────────────────── */
+        /* ── LANGUAGE ── */
         var langBtn      = document.getElementById('lang-btn');
         var langDisplay  = document.getElementById('lang-display');
         var langDropdown = document.getElementById('lang-dropdown');
@@ -810,50 +821,37 @@
             localStorage.setItem('lang', lang);
             html.lang = lang;
             langDisplay.textContent = lang.toUpperCase();
-
             var dict = T[lang] || T.en;
             document.querySelectorAll('[data-i18n]').forEach(function (el) {
                 var key = el.getAttribute('data-i18n');
                 if (dict[key] !== undefined) el.textContent = dict[key];
             });
-
             document.querySelectorAll('.lang-option').forEach(function (btn) {
                 btn.classList.toggle('text-primary', btn.getAttribute('data-lang') === lang);
             });
         }
 
-        langBtn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            langDropdown.classList.toggle('open');
-        });
-
+        langBtn.addEventListener('click', function (e) { e.stopPropagation(); langDropdown.classList.toggle('open'); });
         document.querySelectorAll('.lang-option').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                applyLanguage(btn.getAttribute('data-lang'));
-                langDropdown.classList.remove('open');
-            });
+            btn.addEventListener('click', function () { applyLanguage(btn.getAttribute('data-lang')); langDropdown.classList.remove('open'); });
         });
-
         document.addEventListener('click', function () { langDropdown.classList.remove('open'); });
         langDropdown.addEventListener('click', function (e) { e.stopPropagation(); });
-
         applyLanguage(currentLang);
 
-        /* ── MOBILE MENU ────────────────────────────────────────────────── */
+        /* ── MOBILE MENU ── */
         var hamburger  = document.getElementById('hamburger');
         var mobileMenu = document.getElementById('mobile-menu');
-
         hamburger.addEventListener('click', function () {
             hamburger.classList.toggle('open');
             mobileMenu.classList.toggle('open');
         });
-
         window.closeMobileMenu = function () {
             hamburger.classList.remove('open');
             mobileMenu.classList.remove('open');
         };
 
-        /* ── SCROLL ANIMATIONS ──────────────────────────────────────────── */
+        /* ── SCROLL ANIMATIONS ── */
         var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var animSelector   = '.anim-fade-up, .anim-fade-left, .anim-scale, .title-line';
 
@@ -862,28 +860,23 @@
         } else {
             var scrollObs = new IntersectionObserver(function (entries) {
                 entries.forEach(function (entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        scrollObs.unobserve(entry.target);
-                    }
+                    if (entry.isIntersecting) { entry.target.classList.add('visible'); scrollObs.unobserve(entry.target); }
                 });
             }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
-
             document.querySelectorAll(animSelector).forEach(function (el) { scrollObs.observe(el); });
         }
 
-        /* ── STAT COUNTER ANIMATION ─────────────────────────────────────── */
+        /* ── STAT COUNTER ── */
         if (!prefersReduced) {
             var counterObs = new IntersectionObserver(function (entries) {
                 entries.forEach(function (entry) {
                     if (!entry.isIntersecting) return;
-                    var el     = entry.target;
+                    var el = entry.target;
                     var target = parseInt(el.getAttribute('data-count'), 10);
                     var suffix = el.getAttribute('data-suffix') || '';
-                    var dur    = 1400;
-                    var t0     = performance.now();
+                    var dur = 1400, t0 = performance.now();
                     (function tick(now) {
-                        var p     = Math.min((now - t0) / dur, 1);
+                        var p = Math.min((now - t0) / dur, 1);
                         var eased = 1 - Math.pow(1 - p, 3);
                         el.textContent = Math.floor(eased * target) + suffix;
                         if (p < 1) requestAnimationFrame(tick);
@@ -891,27 +884,24 @@
                     counterObs.unobserve(el);
                 });
             }, { threshold: 0.5 });
-
             document.querySelectorAll('.stat-number').forEach(function (el) { counterObs.observe(el); });
         }
 
-        /* ── ACTIVE NAV LINK ON SCROLL ──────────────────────────────────── */
+        /* ── ACTIVE NAV ── */
         var sections = document.querySelectorAll('section[id]');
         var navLinks = document.querySelectorAll('nav a[href^="#"]');
-
         var navObs = new IntersectionObserver(function (entries) {
             entries.forEach(function (entry) {
                 if (!entry.isIntersecting) return;
                 var id = entry.target.id;
                 navLinks.forEach(function (link) {
-                    var isActive = link.getAttribute('href') === '#' + id;
-                    link.classList.toggle('text-primary',    isActive);
-                    link.classList.toggle('text-[#89ceff]',  isActive);
-                    link.classList.toggle('text-gray-400',  !isActive);
+                    var active = link.getAttribute('href') === '#' + id;
+                    link.classList.toggle('text-primary',   active);
+                    link.classList.toggle('text-[#89ceff]', active);
+                    link.classList.toggle('text-gray-400', !active);
                 });
             });
         }, { threshold: 0.45 });
-
         sections.forEach(function (s) { navObs.observe(s); });
 
     }());
