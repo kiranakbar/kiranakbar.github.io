@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Kiran Akbar | Business Relationship Officer</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
@@ -281,6 +282,28 @@
             transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), background-color 0.2s ease;
         }
         .achieve-item:hover { transform: translateX(6px); }
+
+        /* ── PARALLAX ── */
+        .parallax-wrap {
+            position: relative;
+            overflow: hidden;
+        }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            will-change: transform;
+            filter: blur(72px);
+            opacity: 0.18;
+        }
+        html:not(.dark) .orb { opacity: 0.12; }
+
+        .orb-blue  { background: radial-gradient(circle, #89ceff 0%, transparent 70%); }
+        .orb-teal  { background: radial-gradient(circle, #73d9b5 0%, transparent 70%); }
+        .orb-indigo{ background: radial-gradient(circle, #6366f1 0%, transparent 70%); }
+
+        /* hero text parallax layer */
+        .hero-parallax { will-change: transform; }
     </style>
 </head>
 
@@ -351,8 +374,11 @@
     <main class="pt-32">
 
         <!-- ════════════════════ HERO ════════════════════ -->
-        <section class="max-w-7xl mx-auto px-6 md:px-8 mb-40 relative" id="home">
-            <div class="max-w-4xl">
+        <section class="parallax-wrap max-w-7xl mx-auto px-6 md:px-8 mb-40 relative" id="home">
+            <!-- parallax orbs -->
+            <div class="orb orb-blue w-[600px] h-[600px] -top-40 -right-40" data-parallax="-0.15"></div>
+            <div class="orb orb-teal w-[400px] h-[400px] top-20 -left-32" data-parallax="0.1"></div>
+            <div class="max-w-4xl hero-parallax" data-parallax="0.08">
 
                 <div class="hero-badge inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-tertiary-container/10 border border-tertiary/20 mb-6">
                     <span class="available-dot w-2 h-2 rounded-full bg-tertiary"></span>
@@ -388,8 +414,10 @@
         </section>
 
         <!-- ════════════════════ ABOUT ════════════════════ -->
-        <section class="bg-surface-container-low py-32" id="about">
-            <div class="max-w-7xl mx-auto px-6 md:px-8">
+        <section class="parallax-wrap bg-surface-container-low py-32" id="about">
+            <div class="orb orb-indigo w-[500px] h-[500px] -bottom-24 -left-24" data-parallax="0.12"></div>
+            <div class="orb orb-teal  w-[300px] h-[300px] top-10 right-0"       data-parallax="-0.08"></div>
+            <div class="max-w-7xl mx-auto px-6 md:px-8 relative">
                 <div class="grid md:grid-cols-2 gap-20 items-start">
 
                     <div class="anim-fade-left">
@@ -427,7 +455,9 @@
         </section>
 
         <!-- ════════════════════ SKILLS ════════════════════ -->
-        <section class="py-32 max-w-7xl mx-auto px-6 md:px-8" id="skills">
+        <section class="parallax-wrap py-32 max-w-7xl mx-auto px-6 md:px-8" id="skills">
+            <div class="orb orb-blue  w-[400px] h-[400px] top-0 right-10"     data-parallax="0.14"></div>
+            <div class="orb orb-teal  w-[350px] h-[350px] bottom-0 left-0"   data-parallax="-0.1"></div>
             <h2 class="font-headline text-4xl font-bold mb-16 text-center anim-fade-up">
                 <span class="title-line">
                     <span data-i18n="skills.title.pre">Core </span><span class="text-primary" data-i18n="skills.title.hl">Competencies</span>
@@ -505,8 +535,10 @@
         </section>
 
         <!-- ════════════════════ EXPERIENCE ════════════════════ -->
-        <section class="bg-surface-container-low py-32" id="experience">
-            <div class="max-w-7xl mx-auto px-6 md:px-8">
+        <section class="parallax-wrap bg-surface-container-low py-32" id="experience">
+            <div class="orb orb-blue   w-[500px] h-[500px] top-0 -right-32"   data-parallax="0.1"></div>
+            <div class="orb orb-indigo w-[300px] h-[300px] bottom-10 left-10" data-parallax="-0.12"></div>
+            <div class="max-w-7xl mx-auto px-6 md:px-8 relative">
                 <h2 class="font-headline text-4xl font-bold mb-16 anim-fade-up">
                     <span class="title-line">
                         <span data-i18n="exp.title.pre">Work </span><span class="text-primary" data-i18n="exp.title.hl">Experience</span>
@@ -599,7 +631,9 @@
         </section>
 
         <!-- ════════════════════ EDUCATION ════════════════════ -->
-        <section class="py-32 max-w-7xl mx-auto px-6 md:px-8" id="education">
+        <section class="parallax-wrap py-32 max-w-7xl mx-auto px-6 md:px-8" id="education">
+            <div class="orb orb-teal   w-[420px] h-[420px] -top-20 -left-20" data-parallax="0.13"></div>
+            <div class="orb orb-blue   w-[280px] h-[280px] bottom-0 right-0" data-parallax="-0.09"></div>
             <h2 class="font-headline text-4xl font-bold mb-16 anim-fade-up">
                 <span class="title-line">
                     <span data-i18n="edu.title.pre">Academic </span><span class="text-primary" data-i18n="edu.title.hl">Background</span>
@@ -649,8 +683,10 @@
         </section>
 
         <!-- ════════════════════ ACHIEVEMENTS ════════════════════ -->
-        <section class="bg-surface-container-low py-32" id="achievements">
-            <div class="max-w-7xl mx-auto px-6 md:px-8">
+        <section class="parallax-wrap bg-surface-container-low py-32" id="achievements">
+            <div class="orb orb-indigo w-[460px] h-[460px] -top-10 right-0"    data-parallax="0.11"></div>
+            <div class="orb orb-teal   w-[300px] h-[300px] bottom-0 -left-16" data-parallax="-0.08"></div>
+            <div class="max-w-7xl mx-auto px-6 md:px-8 relative">
                 <h2 class="font-headline text-4xl font-bold mb-16 anim-fade-up">
                     <span class="title-line">
                         <span data-i18n="ach.title.pre">Key </span><span class="text-primary" data-i18n="ach.title.hl">Achievements</span>
@@ -713,8 +749,10 @@
         </section>
 
         <!-- ════════════════════ CTA ════════════════════ -->
-        <section class="py-32 bg-primary">
-            <div class="max-w-7xl mx-auto px-6 md:px-8 text-center">
+        <section class="parallax-wrap py-32 bg-primary">
+            <div class="orb w-[500px] h-[500px] top-0 left-0 bg-white/10"    data-parallax="0.15" style="filter:blur(90px)"></div>
+            <div class="orb w-[350px] h-[350px] bottom-0 right-0 bg-white/10" data-parallax="-0.1" style="filter:blur(90px)"></div>
+            <div class="max-w-7xl mx-auto px-6 md:px-8 text-center relative">
                 <h2 class="anim-fade-up font-headline text-5xl md:text-7xl font-black text-on-primary tracking-tighter mb-12">
                     <span data-i18n="cta.title.pre">Let's Work </span><span class="italic underline decoration-4" data-i18n="cta.title.hl">Together</span>
                 </h2>
@@ -987,6 +1025,33 @@
                 });
             }, { threshold: 0.5 });
             document.querySelectorAll('.stat-number').forEach(function (el) { counterObs.observe(el); });
+        }
+
+        /* ── PARALLAX ── */
+        if (!prefersReduced) {
+            var parallaxEls = document.querySelectorAll('[data-parallax]');
+            var scrollTick  = false;
+
+            function runParallax() {
+                var sy = window.pageYOffset;
+                parallaxEls.forEach(function (el) {
+                    var speed  = parseFloat(el.getAttribute('data-parallax'));
+                    var rect   = el.parentElement.getBoundingClientRect();
+                    // offset relative to section centre
+                    var centre = rect.top + rect.height / 2 - window.innerHeight / 2;
+                    el.style.transform = 'translateY(' + (centre * speed).toFixed(2) + 'px)';
+                });
+                scrollTick = false;
+            }
+
+            window.addEventListener('scroll', function () {
+                if (!scrollTick) {
+                    requestAnimationFrame(runParallax);
+                    scrollTick = true;
+                }
+            }, { passive: true });
+
+            runParallax(); // initial position
         }
 
         /* ── ACTIVE NAV ── */
